@@ -16,6 +16,9 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+        <netty.version>4.1.79.Final</netty.version>
+        <lombok.version>1.18.24</lombok.version>
     </properties>
+
 
 </project>
