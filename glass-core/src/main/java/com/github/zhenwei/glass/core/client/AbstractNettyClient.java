@@ -17,14 +17,15 @@ import lombok.val;
 
 public abstract class AbstractNettyClient extends AbstractNioClient {
 
+    private ChannelFuture future;
 
-    public ChannelFuture build(String host, int port, ChannelInitializer<SocketChannel> initializer,
+    protected ChannelFuture build(String host, int port, ChannelInitializer<SocketChannel> initializer,
                                GenericFutureListener<ChannelPromise> listener, LogLevel level) throws GlassNettyException {
         try {
             val worker = new NioEventLoopGroup(1);
             val bootstrap = new Bootstrap();
             operate(bootstrap);
-            ChannelFuture future = bootstrap.group(worker).channel(NioSocketChannel.class)
+            future = bootstrap.group(worker).channel(NioSocketChannel.class)
                     .handler(new LoggingHandler(level))
                     .handler(initializer).connect(host, port).sync();
             if (listener != null) {
@@ -38,5 +39,17 @@ public abstract class AbstractNettyClient extends AbstractNioClient {
 
 
     abstract void operate(Bootstrap bootstrap);
+
+
+    @Override
+    public void send(Object t) {
+        future.channel().writeAndFlush(t);
+    }
+
+    @Override
+    public void close() {
+        future.channel().close();
+    }
+
 
 }
