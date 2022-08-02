@@ -1,5 +1,7 @@
 package com.github.zhenwei.glass.core.client;
 
+import com.github.zhenwei.glass.core.IoAdapter;
+
 /**
  * @description: INettyClient
  *  Netty客户端抽象
@@ -7,13 +9,7 @@ package com.github.zhenwei.glass.core.client;
  * @since: 1.0
  * @date: 2022/7/30  22:32
  */
-public interface INioClient {
-
-    void send(Object t);
-
-    void close();
-
-    byte[] read();
+public interface INioClient extends IoAdapter {
 
 
 }

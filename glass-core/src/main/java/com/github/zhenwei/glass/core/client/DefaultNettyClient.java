@@ -12,7 +12,7 @@ public class DefaultNettyClient extends AbstractNettyClient {
     ChannelFuture future;
 
     public DefaultNettyClient(String host, int port) throws GlassNettyException {
-        this(host, port, new DefaultProviderChannelInitializer());
+        this(host, port, new DefaultClientChannelInitializer());
     }
 
     public DefaultNettyClient(String host, int port, AbstractNettyChannelInitializer initializer) throws GlassNettyException {
