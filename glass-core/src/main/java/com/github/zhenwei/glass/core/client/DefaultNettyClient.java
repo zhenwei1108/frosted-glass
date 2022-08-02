@@ -9,6 +9,7 @@ import io.netty.handler.logging.LogLevel;
 import io.netty.util.concurrent.GenericFutureListener;
 
 public class DefaultNettyClient extends AbstractNettyClient {
+    ChannelFuture future;
 
     public DefaultNettyClient(String host, int port) throws GlassNettyException {
         this(host, port, new DefaultProviderChannelInitializer());
@@ -20,7 +21,7 @@ public class DefaultNettyClient extends AbstractNettyClient {
 
     public DefaultNettyClient(String host, int port, ChannelInitializer<SocketChannel> initializer,
                               GenericFutureListener<ChannelPromise> listener, LogLevel level) throws GlassNettyException {
-        build(host, port, initializer, listener, level);
+        super(host, port, initializer, listener, level);
     }
 
 

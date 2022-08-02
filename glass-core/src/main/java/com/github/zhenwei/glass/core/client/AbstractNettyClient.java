@@ -19,8 +19,8 @@ public abstract class AbstractNettyClient extends AbstractNioClient {
 
     private ChannelFuture future;
 
-    protected ChannelFuture build(String host, int port, ChannelInitializer<SocketChannel> initializer,
-                               GenericFutureListener<ChannelPromise> listener, LogLevel level) throws GlassNettyException {
+    protected AbstractNettyClient(String host, int port, ChannelInitializer<SocketChannel> initializer,
+                                  GenericFutureListener<ChannelPromise> listener, LogLevel level) throws GlassNettyException {
         try {
             val worker = new NioEventLoopGroup(1);
             val bootstrap = new Bootstrap();
@@ -31,7 +31,6 @@ public abstract class AbstractNettyClient extends AbstractNioClient {
             if (listener != null) {
                 future.addListener(listener);
             }
-            return future;
         } catch (Exception e) {
             throw new GlassNettyException(GlassNettyErrorEnum.BUILD_CLIENT_ERR, e);
         }
