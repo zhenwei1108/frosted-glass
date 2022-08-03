@@ -2,6 +2,7 @@ package com.github.zhenwei.glass.common.enums;
 
 public enum GlassNettyErrorEnum implements IGlassEnum{
     BUILD_CLIENT_ERR("构建客户端失败", 100001),
+    BUILD_SERVER_ERR("构建服务端失败", 100002),
 
     ;
 
