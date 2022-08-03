@@ -6,12 +6,12 @@ import io.netty.channel.socket.SocketChannel;
 
 public abstract class AbstractNettyChannelInitializer extends ChannelInitializer<SocketChannel> {
 
-    public abstract void bindOutboundHandler(ChannelPipeline pipeline);
+    public abstract void bindHandler(ChannelPipeline pipeline);
 
 
     @Override
     protected void initChannel(SocketChannel socketChannel) throws Exception {
-        bindOutboundHandler(socketChannel.pipeline());
+        bindHandler(socketChannel.pipeline());
     }
 
 }

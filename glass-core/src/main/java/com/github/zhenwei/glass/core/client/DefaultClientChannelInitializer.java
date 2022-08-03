@@ -13,7 +13,7 @@ import io.netty.channel.ChannelPipeline;
 public class DefaultClientChannelInitializer extends AbstractNettyChannelInitializer {
 
     @Override
-    public void bindOutboundHandler(ChannelPipeline pipeline) {
+    public void bindHandler(ChannelPipeline pipeline) {
         //add list of OutboundHandler
         pipeline.addLast(new DefaultChannelOutboundHandler());
     }
